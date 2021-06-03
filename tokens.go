@@ -1,0 +1,1 @@
+package go1inch
