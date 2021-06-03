@@ -10,7 +10,11 @@ import (
 
 func main() {
 	client := go1inch.NewClient()
-	res, _, err := client.ApproveCalldata(context.Background(), "eth", 500000000, true, "0x6b175474e89094c44da98b954eedeac495271d0f")
+	res, _, err := client.ApproveCalldata(context.Background(), "eth", &go1inch.ApproveCalldataReq{
+		Amount:       5000000,
+		Infinity:     false,
+		TokenAddress: "0x6b175474e89094c44da98b954eedeac495271d0f",
+	})
 	if err != nil {
 		log.Fatal("Error while getting a approve calldata ", err)
 	}
