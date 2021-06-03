@@ -1,0 +1,16 @@
+package go1inch
+
+import (
+	"context"
+)
+
+// Check if service is able to handle requests
+func (c *Client) Healthcheck(ctx context.Context, network string) (*HealthcheckResponse, int, error) {
+	endpoint := "/healthcheck"
+	var dataRes HealthcheckResponse
+	statusCode, err := c.doRequest(ctx, network, endpoint, "GET", &dataRes, nil)
+	if err != nil {
+		return nil, statusCode, err
+	}
+	return &dataRes, statusCode, nil
+}
