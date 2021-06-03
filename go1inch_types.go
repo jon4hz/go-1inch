@@ -92,3 +92,72 @@ type QuoteRes struct {
 	// do not use estimatedGas from the quote method as the gas limit of a transaction
 	EstimatedGas int64 `json:"estimatedGas"`
 }
+
+type SwapReq struct {
+	// contract address of a token to sell (required)
+	FromTokenAddress string
+	// contract address of a token to buy (required)
+	ToTokenAddress string
+	// amount of a token to sell (required)
+	Amount string
+	// address of a seller (required)
+	FromAddress string
+	// additional slippage in percentage (required)
+	Slippage string
+	// protocols that can be used in a swap (optional)
+	Protocols string
+	// address that will receive a purchased token (optional)
+	DestReceiver string
+	// referrer's address (optional)
+	ReferrerAddress string
+	// referrer's fee in percentage (optional)
+	Fee int64
+	// gas price (optional)
+	GasPrice string
+	// if true, CHI will be burned from fromAddress to compensate gas (optional)
+	BurnChi bool
+	// how many connectorTokens can be used (optional)
+	ComplexityLevel string
+	// contract addresses of connector tokens (optional)
+	ConnectorTokens string
+	// if true, accept the partial order execution (optional)
+	AllowPartialFill bool
+	// if true, checks of the required quantities are disabled (optional)
+	DisableEstimate bool
+	// maximum amount of gas for a swap (optional)
+	GasLimit int64
+	// maximum number of parts each main route part can be split into (optional)
+	Parts int64
+	// maximum number of main route parts (optional)
+	MainRouteParts int64
+}
+
+type Tx struct {
+	// transactions will be sent from this address
+	From string `json:"from"`
+	// transactions will be sent to our contract address
+	To string `json:"to"`
+	// call data
+	Data string `json:"data"`
+	// amount of ETH (in wei) will be sent to the contract address
+	Value string `json:"value"`
+	// gas price in wei
+	GasPrice string `json:"gasPrice"`
+	// estimated amount of the gas limit, increase this value by 25%
+	Gas int64 `json:"gas"`
+}
+
+type SwapRes struct {
+	// parameters of a token to sell
+	FromToken Token `json:"fromToken"`
+	// parameters of a token to buy
+	ToToken Token `json:"ToToken"`
+	// input amount of fromToken in minimal divisible units
+	ToTokenAmount string `json:"toTokenAmount"`
+	// result amount of toToken in minimal divisible units
+	FromTokenAmount string `json:"fromTokenAmount"`
+	// route of the trade
+	Protocols []Protocol `json:"protocols"`
+	// transaction data
+	Tx Tx `json:"tx"`
+}
