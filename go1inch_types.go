@@ -45,7 +45,7 @@ type QuoteReq struct {
 	// amount of a token to sell (required)
 	Amount string
 	// referrer's fee in percentage (optional)
-	Fee int64
+	Fee float64
 	// liquidity protocols that can be used in a swap (optional)
 	Protocols string
 	// gas price (optional)
@@ -70,7 +70,7 @@ type Token struct {
 	LogoURI  string `json:"logoURI"`
 }
 
-type Protocol struct {
+type Protocol [][]struct {
 	Name             string `json:"name"`
 	Part             int64  `json:"part"`
 	FromTokenAddress string `json:"fromTokenAddress"`
@@ -103,7 +103,7 @@ type SwapReq struct {
 	// address of a seller (required)
 	FromAddress string
 	// additional slippage in percentage (required)
-	Slippage string
+	Slippage float64
 	// protocols that can be used in a swap (optional)
 	Protocols string
 	// address that will receive a purchased token (optional)
@@ -111,7 +111,7 @@ type SwapReq struct {
 	// referrer's address (optional)
 	ReferrerAddress string
 	// referrer's fee in percentage (optional)
-	Fee int64
+	Fee float64
 	// gas price (optional)
 	GasPrice string
 	// if true, CHI will be burned from fromAddress to compensate gas (optional)
@@ -160,4 +160,19 @@ type SwapRes struct {
 	Protocols []Protocol `json:"protocols"`
 	// transaction data
 	Tx Tx `json:"tx"`
+}
+
+type ProtocolsRes struct {
+	// protocol names
+	Protocols []string `json:"protocols"`
+}
+
+type ProtocolsImages struct {
+	Id    string `json:"id"`
+	Title string `json:"title"`
+	Img   string `json:"img"`
+}
+
+type ProtocolsImagesRes struct {
+	Protocols []ProtocolsImages `json:"protocols"`
 }

@@ -28,11 +28,12 @@ func NewClient() *Client {
 }
 
 func setQueryParam(endpoint *string, params []map[string]interface{}) {
-	var first = false
+	var first = true
 	for _, param := range params {
 		for i := range param {
 			if first {
 				*endpoint = fmt.Sprintf("%s?%s=%v", *endpoint, i, param[i])
+				first = false
 			} else {
 				*endpoint = fmt.Sprintf("%s&%s=%v", *endpoint, i, param[i])
 			}
@@ -41,7 +42,6 @@ func setQueryParam(endpoint *string, params []map[string]interface{}) {
 }
 
 func (c *Client) doRequest(ctx context.Context, net, endpoint, method string, expRes interface{}, reqData interface{}, opts ...map[string]interface{}) (int, error) {
-	fmt.Println(opts)
 	callURL := fmt.Sprintf("%s%s%s", inchURL, network[net], endpoint)
 
 	var dataReq []byte
