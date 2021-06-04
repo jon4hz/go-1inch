@@ -71,10 +71,10 @@ type Token struct {
 }
 
 type Protocol [][]struct {
-	Name             string `json:"name"`
-	Part             int64  `json:"part"`
-	FromTokenAddress string `json:"fromTokenAddress"`
-	ToTokenAddress   string `json:"toTokenAddress"`
+	Name             string  `json:"name"`
+	Part             float64 `json:"part"`
+	FromTokenAddress string  `json:"fromTokenAddress"`
+	ToTokenAddress   string  `json:"toTokenAddress"`
 }
 
 type QuoteRes struct {
