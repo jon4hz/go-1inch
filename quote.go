@@ -5,7 +5,7 @@ import (
 	"fmt"
 )
 
-// Get quote
+// Quote gets quote for an aggregated swap which can be used with a web3 provider to send the transaction
 func (c *Client) Quote(ctx context.Context, network string, request *QuoteReq) (*QuoteRes, int, error) {
 	endpoint := "/quote"
 

@@ -5,7 +5,7 @@ import (
 	"fmt"
 )
 
-// Get swap
+// Swap gets swap for an aggregated swap which can be used with a web3 provider to send the transaction
 func (c *Client) Swap(ctx context.Context, network string, request *SwapReq) (*SwapRes, int, error) {
 	endpoint := "/swap"
 

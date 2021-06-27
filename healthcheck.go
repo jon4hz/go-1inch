@@ -4,7 +4,7 @@ import (
 	"context"
 )
 
-// Check if service is able to handle requests
+// Healthcheck checks if service is able to handle requests
 func (c *Client) Healthcheck(ctx context.Context, network string) (*HealthcheckRes, int, error) {
 	endpoint := "/healthcheck"
 	var dataRes HealthcheckRes
