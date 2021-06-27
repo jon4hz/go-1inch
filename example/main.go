@@ -16,7 +16,9 @@ func main() {
 		TokenAddress: "0x6b175474e89094c44da98b954eedeac495271d0f",
 	})
 	if err != nil {
-		log.Fatal("Error while getting a approve calldata ", err)
+		log.Fatal("Error while getting an approve calldata ", err)
 	}
 	fmt.Println(res)
+
+	fmt.Println(client.Tokens(context.Background(), "matic"))
 }

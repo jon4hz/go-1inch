@@ -23,7 +23,7 @@ type ApproveCalldataReq struct {
 
 type ApproveCalldataRes struct {
 	// token contract address
-	To []string `json:"to"`
+	To string `json:"to"`
 	// amount of eth to be sent (in wei)
 	Value string `json:"value"`
 	// recommended gas price (in wei)
@@ -175,4 +175,8 @@ type ProtocolsImages struct {
 
 type ProtocolsImagesRes struct {
 	Protocols []ProtocolsImages `json:"protocols"`
+}
+
+type TokensRes struct {
+	Tokens map[string]Token `json:"tokens"`
 }
