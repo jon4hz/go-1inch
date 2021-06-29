@@ -30,3 +30,5 @@ func main(){
 
 ## Ressources
 - [Official API Docs](https://docs.1inch.io/api/)
+- [API Specs](https://api.1inch.exchange/swagger/polygon/)
+- [Go Docs](https://pkg.go.dev/github.com/jon4hz/go-1inch)
