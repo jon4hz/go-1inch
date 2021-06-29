@@ -10,15 +10,12 @@ type HealthcheckRes struct {
 	Status string `json:"status"`
 }
 
-type ApproveCalldataReq struct {
-	// Amount of tokens to be approved: (optional)
+type ApproveCalldataOpts struct {
+	// Amount of tokens to be approved:
 	// 0 — set approval to zero (lock a token)
 	// >0 — approve exact amount of tokens.
-	Amount int64
-	// If set, approve infinite amount of tokens (optional)
-	Infinity bool
-	// The contract address of a token (required)
-	TokenAddress string
+	// if not set use infinity approve
+	Amount string
 }
 
 type ApproveCalldataRes struct {
@@ -37,29 +34,31 @@ type ApproveSpenderRes struct {
 	Address string `json:"address"`
 }
 
-type QuoteReq struct {
-	// contract address of a token to sell (required)
-	FromTokenAddress string
-	// contract address of a token to buy (required)
-	ToTokenAddress string
-	// amount of a token to sell (required)
-	Amount string
-	// referrer's fee in percentage (optional)
-	Fee float64
-	// liquidity protocols that can be used in a swap (optional)
+type QuoteOpts struct {
+	// referrer's fee in percentage
+	// Ethereum: min: 0; max: 3; Binance: min: 0; max: 3; default: 0; !should be the same for quote and swap!
+	Fee string
+	// liquidity protocols that can be used in a swap
 	Protocols string
-	// gas price (optional)
+	// gas price
+	// default: fast from network
 	GasPrice string
-	// how many connectorTokens can be used (optional)
+	// how many connectorTokens can be used
+	// min: 0; max: 3; default: 2; !should be the same for quote and swap!
 	ComplexityLevel string
-	// contract addresses of connector tokens (optional)
+	// contract addresses of connector tokens
+	// max: 5; !should be the same for quote and swap!
 	ConnectorTokens string
-	// maximum amount of gas for a swap (optional)
-	GasLimit int64
-	// maximum number of parts each main route part can be split into (optional)
-	Parts int64
-	// maximum number of main route parts (optional)
-	MainRouteParts int64
+	// maximum amount of gas for a swap
+	GasLimit string
+	// virtual split parts. default: 50; max: 500; !should be the same for quote and swap!
+	VirtualParts string
+	// maximum number of parts each main route part can be split into
+	// split parts. default: Ethereum: 50; Binance: 40 max: Ethereum: 100; Binance: 100; !should be the same for quote and swap!
+	Parts string
+	// maximum number of main route parts
+	// default: Ethereum: 10, Binance: 10; max: Ethereum: 50, Binance: 50 !should be the same for quote and swap!
+	MainRouteParts string
 }
 
 type Token struct {
@@ -71,10 +70,10 @@ type Token struct {
 }
 
 type Protocol [][]struct {
-	Name             string  `json:"name"`
-	Part             float64 `json:"part"`
-	FromTokenAddress string  `json:"fromTokenAddress"`
-	ToTokenAddress   string  `json:"toTokenAddress"`
+	Name             string `json:"name"`
+	Part             int64  `json:"part"`
+	FromTokenAddress string `json:"fromTokenAddress"`
+	ToTokenAddress   string `json:"toTokenAddress"`
 }
 
 type QuoteRes struct {
@@ -93,43 +92,43 @@ type QuoteRes struct {
 	EstimatedGas int64 `json:"estimatedGas"`
 }
 
-type SwapReq struct {
-	// contract address of a token to sell (required)
-	FromTokenAddress string
-	// contract address of a token to buy (required)
-	ToTokenAddress string
-	// amount of a token to sell (required)
-	Amount string
-	// address of a seller (required)
-	FromAddress string
-	// additional slippage in percentage (required)
-	Slippage float64
-	// protocols that can be used in a swap (optional)
+type SwapOpts struct {
+	// protocols that can be used in a swap
 	Protocols string
-	// address that will receive a purchased token (optional)
+	// address that will receive a purchased token
+	// Receiver of destination currency. default: fromAddress
 	DestReceiver string
-	// referrer's address (optional)
+	// referrer's address
 	ReferrerAddress string
-	// referrer's fee in percentage (optional)
-	Fee float64
-	// gas price (optional)
+	// referrer's fee in percentage
+	// Ethereum: min: 0; max: 3; Binance: min: 0; max: 3; default: 0; !should be the same for quote and swap!
+	Fee string
+	// gas price
+	// default: fast from network
 	GasPrice string
-	// if true, CHI will be burned from fromAddress to compensate gas (optional)
+	// if true, CHI will be burned from fromAddress to compensate gas
+	// default: false; Suggest to check user's balance and allowance before set this flag; CHI should be approved to spender address
 	BurnChi bool
-	// how many connectorTokens can be used (optional)
+	// how many connectorTokens can be used
+	// min: 0; max: 3; default: 2; !should be the same for quote and swap!
 	ComplexityLevel string
-	// contract addresses of connector tokens (optional)
+	// contract addresses of connector tokens
+	// max: 5; !should be the same for quote and swap!
 	ConnectorTokens string
-	// if true, accept the partial order execution (optional)
+	// if true, accept the partial order execution
 	AllowPartialFill bool
-	// if true, checks of the required quantities are disabled (optional)
+	// if true, checks of the required quantities are disabled
 	DisableEstimate bool
-	// maximum amount of gas for a swap (optional)
-	GasLimit int64
-	// maximum number of parts each main route part can be split into (optional)
-	Parts int64
-	// maximum number of main route parts (optional)
-	MainRouteParts int64
+	// maximum amount of gas for a swap
+	GasLimit string
+	// virtual split parts. default: 50; max: 500; !should be the same for quote and swap!
+	VirtualParts string
+	// maximum number of parts each main route part can be split into
+	// split parts. default: Ethereum: 50; Binance: 40 max: Ethereum: 100; Binance: 100; !should be the same for quote and swap!
+	Parts string
+	// maximum number of main route parts
+	// default: Ethereum: 10, Binance: 10; max: Ethereum: 50, Binance: 50 !should be the same for quote and swap!
+	MainRouteParts string
 }
 
 type Tx struct {
