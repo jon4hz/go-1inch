@@ -34,6 +34,21 @@ func TestQuoteWithoutOpts(t *testing.T) {
 	t.Log(res)
 }
 
+func TestQuoteWithtOpts(t *testing.T) {
+	client := go1inch.NewClient()
+
+	res, _, err := client.Quote(context.Background(), "eth",
+		"0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+		"0x6b175474e89094c44da98b954eedeac495271d0f",
+		"100000000000000000000",
+		nil,
+	)
+	if err != nil {
+		t.Error(err)
+	}
+	t.Log(res)
+}
+
 func TestQuoteWithOpts(t *testing.T) {
 	client := go1inch.NewClient()
 	res, _, err := client.Quote(context.Background(), "eth",
@@ -160,6 +175,45 @@ func TestGetTokens(t *testing.T) {
 	client := go1inch.NewClient()
 
 	res, _, err := client.Tokens(context.Background(), "matic")
+	if err != nil {
+		t.Error(err)
+	}
+	t.Log(res)
+}
+
+func TestApproveSpender(t *testing.T) {
+	client := go1inch.NewClient()
+	res, _, err := client.ApproveSpender(context.Background(), "bsc")
+	if err != nil {
+		t.Error(err)
+	}
+	t.Log(res)
+}
+
+func TestApproveCalldataWithoutOpts(t *testing.T) {
+	client := go1inch.NewClient()
+	res, _, err := client.ApproveCalldata(
+		context.Background(),
+		"eth",
+		"0x6b175474e89094c44da98b954eedeac495271d0f",
+		nil,
+	)
+	if err != nil {
+		t.Error(err)
+	}
+	t.Log(res)
+}
+
+func TestApproveCalldataWithOpts(t *testing.T) {
+	client := go1inch.NewClient()
+	res, _, err := client.ApproveCalldata(
+		context.Background(),
+		"eth",
+		"0x6b175474e89094c44da98b954eedeac495271d0f",
+		&go1inch.ApproveCalldataOpts{
+			Amount: "100000",
+		},
+	)
 	if err != nil {
 		t.Error(err)
 	}
