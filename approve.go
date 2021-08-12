@@ -1,22 +1,29 @@
 package go1inch
 
-import "context"
+import (
+	"context"
+	"errors"
+)
 
 // ApproveCalldata gets calldata for approve transaction and spender address
 // Do not combine amount parameter with infinity parameter, only one must be sent.
 // infinity will overwrite amount
 // amount is set in minimal divisible units: for example, to unlock 1 DAI, amount should be 1000000000000000000, to unlock 1.03 USDC, amount should be 1030000.
-func (c *Client) ApproveCalldata(ctx context.Context, network string, request *ApproveCalldataReq) (*ApproveCalldataRes, int, error) {
+func (c *Client) ApproveCalldata(ctx context.Context, network, tokenAddress string, opts *ApproveCalldataOpts) (*ApproveCalldataRes, int, error) {
 	endpoint := "/approve/calldata"
+	if tokenAddress == "" {
+		return nil, 0, errors.New("required parameter is missing")
+	}
 
 	var queries = make(map[string]interface{})
 
-	if request.Infinity {
-		queries["infinity"] = true
-	} else {
-		queries["amount"] = request.Amount
+	queries["tokenAddress"] = tokenAddress
+
+	if opts != nil {
+		if opts.Amount != "" {
+			queries["amount"] = opts.Amount
+		}
 	}
-	queries["tokenAddress"] = request.TokenAddress
 
 	var dataRes ApproveCalldataRes
 	statusCode, err := c.doRequest(ctx, network, endpoint, "GET", &dataRes, nil, queries)

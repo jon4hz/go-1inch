@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"context"
 	"encoding/json"
+	"errors"
 	"fmt"
 	"io/ioutil"
 	"net/http"
@@ -42,7 +43,11 @@ func setQueryParam(endpoint *string, params []map[string]interface{}) {
 }
 
 func (c *Client) doRequest(ctx context.Context, net, endpoint, method string, expRes interface{}, reqData interface{}, opts ...map[string]interface{}) (int, error) {
-	callURL := fmt.Sprintf("%s%s%s", inchURL, network[net], endpoint)
+	n, ok := network[net]
+	if !ok {
+		return 0, errors.New("invalid network")
+	}
+	callURL := fmt.Sprintf("%s%s%s", inchURL, n, endpoint)
 
 	var dataReq []byte
 	var err error
