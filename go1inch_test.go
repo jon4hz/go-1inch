@@ -51,3 +51,21 @@ func TestGetProtocolsImages(t *testing.T) {
 		t.Error(err)
 	}
 }
+
+func TestQuote(t *testing.T) {
+
+	client := NewClient()
+	req := &QuoteReq{
+		FromTokenAddress: "0x1bfd67037b42cf73acf2047067bd4f2c47d9bfd6",
+		ToTokenAddress:   "0x2791bca1f2de4661ed88a30c99a7a9449aa84174",
+		Amount:           "100000000000000000000",
+	}
+	_, code, err := client.Quote(context.Background(), "matic", req)
+	if err != nil {
+		t.Error(err)
+	}
+	if code != 200 {
+		t.Errorf("code returned %d, expected 200", code)
+	}
+
+}
