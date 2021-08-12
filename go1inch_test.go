@@ -200,3 +200,14 @@ func TestApproveCalldataWithOpts(t *testing.T) {
 	}
 	t.Log(res)
 }
+
+func TestWBTC(t *testing.T) {
+	client := go1inch.NewClient()
+	_, code, err := client.Quote(context.Background(), "matic", "0x1bfd67037b42cf73acf2047067bd4f2c47d9bfd6", "0x2791bca1f2de4661ed88a30c99a7a9449aa84174", "100000000", nil)
+	if err != nil {
+		t.Error(err)
+	}
+	if code != 200 {
+		t.Error("expected 200, got ", code)
+	}
+}
