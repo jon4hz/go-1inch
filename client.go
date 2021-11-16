@@ -11,7 +11,7 @@ import (
 )
 
 const (
-	inchURL = "https://api.1inch.exchange/v3.0/"
+	inchURL = "https://api.1inch.exchange/v4.0/"
 )
 
 var (

@@ -142,16 +142,6 @@ func TestGetProtocols(t *testing.T) {
 	t.Log(res)
 }
 
-func TestGetProtocolsImages(t *testing.T) {
-	client := go1inch.NewClient()
-
-	res, _, err := client.ProtocolsImages(context.Background(), "bsc")
-	if err != nil {
-		t.Error(err)
-	}
-	t.Log(res)
-}
-
 func TestGetTokens(t *testing.T) {
 	client := go1inch.NewClient()
 

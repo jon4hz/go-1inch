@@ -10,7 +10,7 @@ import (
 // infinity will overwrite amount
 // amount is set in minimal divisible units: for example, to unlock 1 DAI, amount should be 1000000000000000000, to unlock 1.03 USDC, amount should be 1030000.
 func (c *Client) ApproveCalldata(ctx context.Context, network, tokenAddress string, opts *ApproveCalldataOpts) (*ApproveCalldataRes, int, error) {
-	endpoint := "/approve/calldata"
+	endpoint := "/approve/transaction"
 	if tokenAddress == "" {
 		return nil, 0, errors.New("required parameter is missing")
 	}
