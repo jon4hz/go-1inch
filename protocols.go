@@ -5,9 +5,9 @@ import (
 )
 
 // ProtocolsImages gets names and images of all supported protocols
-func (c *Client) Protocols(ctx context.Context, network string) (*ProtocolsImagesRes, int, error) {
+func (c *Client) LiquiditySouces(ctx context.Context, network string) (*LiquiditySoucesRes, int, error) {
 	endpoint := "/liquidity-sources"
-	var dataRes ProtocolsImagesRes
+	var dataRes LiquiditySoucesRes
 	statusCode, err := c.doRequest(ctx, network, endpoint, "GET", &dataRes, nil)
 	if err != nil {
 		return nil, statusCode, err

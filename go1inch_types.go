@@ -161,14 +161,14 @@ type SwapRes struct {
 	Tx Tx `json:"tx"`
 }
 
-type ProtocolsImages struct {
+type Protocols struct {
 	Id    string `json:"id"`
 	Title string `json:"title"`
 	Img   string `json:"img"`
 }
 
-type ProtocolsImagesRes struct {
-	Protocols []ProtocolsImages `json:"protocols"`
+type LiquiditySoucesRes struct {
+	Protocols []Protocols `json:"protocols"`
 }
 
 type TokensRes struct {

@@ -16,9 +16,11 @@ const (
 
 var (
 	network = map[string]string{
-		"eth":   "1",
-		"bsc":   "56",
-		"matic": "137",
+		"eth":      "1",
+		"bsc":      "56",
+		"matic":    "137",
+		"optimism": "10",
+		"arbitrum": "42161",
 	}
 )
 

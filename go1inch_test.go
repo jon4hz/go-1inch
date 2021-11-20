@@ -9,14 +9,17 @@ import (
 
 func TestHealthCheckReponse(t *testing.T) {
 	client := go1inch.NewClient()
-	res, _, err := client.Healthcheck(context.Background(), "eth")
-	if err != nil {
-		t.Error(err)
+	networks := []string{"eth", "bsc", "matic", "optimism", "arbitrum"}
+	for _, network := range networks {
+		res, _, err := client.Healthcheck(context.Background(), network)
+		if err != nil {
+			t.Error(err)
+		}
+		if res.Status != "OK" {
+			t.Errorf("healthcheck returned %s, expected OK", res.Status)
+		}
+		t.Logf("Network healthcheck %s: %v", network, res)
 	}
-	if res.Status != "OK" {
-		t.Errorf("healthcheck returned %s, expected OK", res.Status)
-	}
-	t.Log(res)
 }
 
 func TestQuoteWithoutOpts(t *testing.T) {
@@ -132,10 +135,10 @@ func TestSwapWithMissingParameter(t *testing.T) {
 	}
 }
 
-func TestGetProtocols(t *testing.T) {
+func TestGetLiquiditySouces(t *testing.T) {
 	client := go1inch.NewClient()
 
-	res, _, err := client.Protocols(context.Background(), "matic")
+	res, _, err := client.LiquiditySouces(context.Background(), "matic")
 	if err != nil {
 		t.Error(err)
 	}
