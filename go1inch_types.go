@@ -10,7 +10,7 @@ type HealthcheckRes struct {
 	Status string `json:"status"`
 }
 
-type ApproveCalldataOpts struct {
+type ApproveTransactionOpts struct {
 	// Amount of tokens to be approved:
 	// 0 — set approval to zero (lock a token)
 	// >0 — approve exact amount of tokens.
@@ -18,7 +18,7 @@ type ApproveCalldataOpts struct {
 	Amount string
 }
 
-type ApproveCalldataRes struct {
+type ApproveTransactionRes struct {
 	// token contract address
 	To string `json:"to"`
 	// amount of eth to be sent (in wei)

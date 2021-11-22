@@ -164,9 +164,9 @@ func TestApproveSpender(t *testing.T) {
 	t.Log(res)
 }
 
-func TestApproveCalldataWithoutOpts(t *testing.T) {
+func TestApproveTransactionWithoutOpts(t *testing.T) {
 	client := go1inch.NewClient()
-	res, _, err := client.ApproveCalldata(
+	res, _, err := client.ApproveTransaction(
 		context.Background(),
 		"eth",
 		"0x6b175474e89094c44da98b954eedeac495271d0f",
@@ -178,13 +178,13 @@ func TestApproveCalldataWithoutOpts(t *testing.T) {
 	t.Log(res)
 }
 
-func TestApproveCalldataWithOpts(t *testing.T) {
+func TestApproveTransactionWithOpts(t *testing.T) {
 	client := go1inch.NewClient()
-	res, _, err := client.ApproveCalldata(
+	res, _, err := client.ApproveTransaction(
 		context.Background(),
 		"eth",
 		"0x6b175474e89094c44da98b954eedeac495271d0f",
-		&go1inch.ApproveCalldataOpts{
+		&go1inch.ApproveTransactionOpts{
 			Amount: "100000",
 		},
 	)
