@@ -34,6 +34,11 @@ type ApproveSpenderRes struct {
 	Address string `json:"address"`
 }
 
+type ApproveAllowanceRes struct {
+	// address of 1inch contract
+	Allowance string `json:"allowance"`
+}
+
 type QuoteOpts struct {
 	// referrer's fee in percentage
 	// Ethereum: min: 0; max: 3; Binance: min: 0; max: 3; default: 0; !should be the same for quote and swap!

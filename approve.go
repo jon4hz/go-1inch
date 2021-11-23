@@ -43,3 +43,22 @@ func (c *Client) ApproveSpender(ctx context.Context, network string) (*ApproveSp
 	}
 	return &dataRes, statusCode, nil
 }
+
+// ApproveAllowance gets the number of tokens that the 1inch router is allowed to spend
+func (c *Client) ApproveAllowance(ctx context.Context, network, tokenAddress, walletAddress string) (*ApproveAllowanceRes, int, error) {
+	endpoint := "/approve/allowance"
+	if tokenAddress == "" || walletAddress == "" {
+		return nil, 0, errors.New("required parameter is missing")
+	}
+
+	var queries = make(map[string]interface{})
+
+	queries["tokenAddress"] = tokenAddress
+	queries["walletAddress"] = walletAddress
+	var dataRes ApproveAllowanceRes
+	statusCode, err := c.doRequest(ctx, network, endpoint, "GET", &dataRes, nil, queries)
+	if err != nil {
+		return nil, statusCode, err
+	}
+	return &dataRes, statusCode, nil
+}
