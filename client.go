@@ -11,14 +11,16 @@ import (
 )
 
 const (
-	inchURL = "https://api.1inch.exchange/v3.0/"
+	inchURL = "https://api.1inch.exchange/v4.0/"
 )
 
 var (
 	network = map[string]string{
-		"eth":   "1",
-		"bsc":   "56",
-		"matic": "137",
+		"eth":      "1",
+		"bsc":      "56",
+		"matic":    "137",
+		"optimism": "10",
+		"arbitrum": "42161",
 	}
 )
 

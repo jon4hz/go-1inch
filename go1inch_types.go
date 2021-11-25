@@ -10,7 +10,7 @@ type HealthcheckRes struct {
 	Status string `json:"status"`
 }
 
-type ApproveCalldataOpts struct {
+type ApproveTransactionOpts struct {
 	// Amount of tokens to be approved:
 	// 0 — set approval to zero (lock a token)
 	// >0 — approve exact amount of tokens.
@@ -18,7 +18,7 @@ type ApproveCalldataOpts struct {
 	Amount string
 }
 
-type ApproveCalldataRes struct {
+type ApproveTransactionRes struct {
 	// token contract address
 	To string `json:"to"`
 	// amount of eth to be sent (in wei)
@@ -32,6 +32,11 @@ type ApproveCalldataRes struct {
 type ApproveSpenderRes struct {
 	// address of 1inch contract
 	Address string `json:"address"`
+}
+
+type ApproveAllowanceRes struct {
+	// address of 1inch contract
+	Allowance string `json:"allowance"`
 }
 
 type QuoteOpts struct {
@@ -161,19 +166,14 @@ type SwapRes struct {
 	Tx Tx `json:"tx"`
 }
 
-type ProtocolsRes struct {
-	// protocol names
-	Protocols []string `json:"protocols"`
-}
-
-type ProtocolsImages struct {
+type Protocols struct {
 	Id    string `json:"id"`
 	Title string `json:"title"`
 	Img   string `json:"img"`
 }
 
-type ProtocolsImagesRes struct {
-	Protocols []ProtocolsImages `json:"protocols"`
+type LiquiditySoucesRes struct {
+	Protocols []Protocols `json:"protocols"`
 }
 
 type TokensRes struct {

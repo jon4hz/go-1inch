@@ -9,14 +9,17 @@ import (
 
 func TestHealthCheckReponse(t *testing.T) {
 	client := go1inch.NewClient()
-	res, _, err := client.Healthcheck(context.Background(), "eth")
-	if err != nil {
-		t.Error(err)
+	networks := []string{"eth", "bsc", "matic", "optimism", "arbitrum"}
+	for _, network := range networks {
+		res, _, err := client.Healthcheck(context.Background(), network)
+		if err != nil {
+			t.Error(err)
+		}
+		if res.Status != "OK" {
+			t.Errorf("healthcheck returned %s, expected OK", res.Status)
+		}
+		t.Logf("Network healthcheck %s: %v", network, res)
 	}
-	if res.Status != "OK" {
-		t.Errorf("healthcheck returned %s, expected OK", res.Status)
-	}
-	t.Log(res)
 }
 
 func TestQuoteWithoutOpts(t *testing.T) {
@@ -132,20 +135,10 @@ func TestSwapWithMissingParameter(t *testing.T) {
 	}
 }
 
-func TestGetProtocols(t *testing.T) {
+func TestGetLiquiditySouces(t *testing.T) {
 	client := go1inch.NewClient()
 
-	res, _, err := client.Protocols(context.Background(), "matic")
-	if err != nil {
-		t.Error(err)
-	}
-	t.Log(res)
-}
-
-func TestGetProtocolsImages(t *testing.T) {
-	client := go1inch.NewClient()
-
-	res, _, err := client.ProtocolsImages(context.Background(), "bsc")
+	res, _, err := client.LiquiditySouces(context.Background(), "matic")
 	if err != nil {
 		t.Error(err)
 	}
@@ -171,9 +164,20 @@ func TestApproveSpender(t *testing.T) {
 	t.Log(res)
 }
 
-func TestApproveCalldataWithoutOpts(t *testing.T) {
+// func TestApproveAllowance(t *testing.T) {
+// 	const TOKEN_ADDRESS = "0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c" //WBNB
+// 	const WALLET_ADDRESS = ""                                          // Wallet that has Router V4 approved for WBNB
+// 	client := go1inch.NewClient()
+// 	res, _, err := client.ApproveAllowance(context.Background(), "bsc", TOKEN_ADDRESS, WALLET_ADDRESS)
+// 	if err != nil {
+// 		t.Error(err)
+// 	}
+// 	t.Log(res)
+// }
+
+func TestApproveTransactionWithoutOpts(t *testing.T) {
 	client := go1inch.NewClient()
-	res, _, err := client.ApproveCalldata(
+	res, _, err := client.ApproveTransaction(
 		context.Background(),
 		"eth",
 		"0x6b175474e89094c44da98b954eedeac495271d0f",
@@ -185,13 +189,13 @@ func TestApproveCalldataWithoutOpts(t *testing.T) {
 	t.Log(res)
 }
 
-func TestApproveCalldataWithOpts(t *testing.T) {
+func TestApproveTransactionWithOpts(t *testing.T) {
 	client := go1inch.NewClient()
-	res, _, err := client.ApproveCalldata(
+	res, _, err := client.ApproveTransaction(
 		context.Background(),
 		"eth",
 		"0x6b175474e89094c44da98b954eedeac495271d0f",
-		&go1inch.ApproveCalldataOpts{
+		&go1inch.ApproveTransactionOpts{
 			Amount: "100000",
 		},
 	)
