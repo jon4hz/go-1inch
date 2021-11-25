@@ -164,16 +164,16 @@ func TestApproveSpender(t *testing.T) {
 	t.Log(res)
 }
 
-// func TestApproveAllowance(t *testing.T) {
-// 	const TOKEN_ADDRESS = "0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c" //WBNB
-// 	const WALLET_ADDRESS = ""                                          // Wallet that has Router V4 approved for WBNB
-// 	client := go1inch.NewClient()
-// 	res, _, err := client.ApproveAllowance(context.Background(), "bsc", TOKEN_ADDRESS, WALLET_ADDRESS)
-// 	if err != nil {
-// 		t.Error(err)
-// 	}
-// 	t.Log(res)
-// }
+func TestApproveAllowance(t *testing.T) {
+	const TOKEN_ADDRESS = "0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c"  // WBNB
+	const WALLET_ADDRESS = "0xC49926C4124cEe1cbA0Ea94Ea31a6c12318df947" // Wallet that has Router V4 approved for WBNB
+	client := go1inch.NewClient()
+	res, _, err := client.ApproveAllowance(context.Background(), "bsc", TOKEN_ADDRESS, WALLET_ADDRESS)
+	if err != nil {
+		t.Error(err)
+	}
+	t.Log(res)
+}
 
 func TestApproveTransactionWithoutOpts(t *testing.T) {
 	client := go1inch.NewClient()
