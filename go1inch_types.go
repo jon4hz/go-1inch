@@ -69,7 +69,7 @@ type QuoteOpts struct {
 type Token struct {
 	Symbol   string `json:"symbol"`
 	Name     string `json:"name"`
-	Address  string `json:"asddress"`
+	Address  string `json:"address"`
 	Decimals int64  `json:"decimals"`
 	LogoURI  string `json:"logoURI"`
 }
