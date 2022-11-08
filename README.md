@@ -10,7 +10,7 @@ package main
 import (
     "context"
     "fmt"
-	"log"
+    "log"
 
     go1inch "github.com/jon4hz/go-1inch"
 )
@@ -20,7 +20,7 @@ func main(){
     client := go1inch.NewClient()
 
     // check the health status from the API pointing to the ethereum network
-    health, _, err := client.Healthcheck(context.Background(), "eth")
+    health, _, err := client.Healthcheck(context.Background(), go1inch.Eth)
     if err != nil {
         log.Fatal(err)
     }
