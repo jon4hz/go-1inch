@@ -1,7 +1,9 @@
 # go-1inch
+
 A golang API wrapper for the 1inch API
 
 ## Getting started
+
 ```go
 package main
 
@@ -22,13 +24,13 @@ func main(){
     if err != nil {
         log.Fatal(err)
     }
-    
+
     fmt.Println(health)
 }
 
 ```
 
 ## Ressources
-- [Official API Docs](https://docs.1inch.io/api/)
-- [API Specs](https://api.1inch.exchange/swagger/polygon/)
+
+- [Official API Docs](https://docs.1inch.io/docs/aggregation-protocol/api/swagger/)
 - [Go Docs](https://pkg.go.dev/github.com/jon4hz/go-1inch)
