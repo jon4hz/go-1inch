@@ -79,7 +79,7 @@ func TestSwapWithoutOpts(t *testing.T) {
 	res, _, err := client.Swap(context.Background(), "eth",
 		"0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
 		"0x6b175474e89094c44da98b954eedeac495271d0f",
-		"100000000000000000000",
+		"100000000000000",
 		"0x52bc44d5378309ee2abf1539bf71de1b7d7be3b5",
 		1,
 		nil,
