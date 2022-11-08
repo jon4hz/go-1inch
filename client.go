@@ -30,7 +30,7 @@ const (
 )
 
 var (
-	network = map[Network]string{
+	networks = map[Network]string{
 		Eth:         "1",
 		Bsc:         "56",
 		Matic:       "137",
@@ -65,7 +65,7 @@ func setQueryParam(endpoint *string, params []map[string]interface{}) {
 }
 
 func (c *Client) doRequest(ctx context.Context, net Network, endpoint, method string, expRes interface{}, reqData interface{}, opts ...map[string]interface{}) (int, error) {
-	n, ok := network[net]
+	n, ok := networks[net]
 	if !ok {
 		return 0, errors.New("invalid network")
 	}
