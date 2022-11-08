@@ -9,7 +9,7 @@ import (
 
 func TestHealthCheckReponse(t *testing.T) {
 	client := go1inch.NewClient()
-	networks := []string{"eth", "bsc", "matic", "optimism", "arbitrum"}
+	networks := []go1inch.Network{go1inch.Eth, go1inch.Bsc, go1inch.Matic, go1inch.Optimism, go1inch.Arbitrum}
 	for _, network := range networks {
 		res, _, err := client.Healthcheck(context.Background(), network)
 		if err != nil {

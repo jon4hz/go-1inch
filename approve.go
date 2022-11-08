@@ -9,7 +9,7 @@ import (
 // Do not combine amount parameter with infinity parameter, only one must be sent.
 // infinity will overwrite amount
 // amount is set in minimal divisible units: for example, to unlock 1 DAI, amount should be 1000000000000000000, to unlock 1.03 USDC, amount should be 1030000.
-func (c *Client) ApproveTransaction(ctx context.Context, network, tokenAddress string, opts *ApproveTransactionOpts) (*ApproveTransactionRes, int, error) {
+func (c *Client) ApproveTransaction(ctx context.Context, network Network, tokenAddress string, opts *ApproveTransactionOpts) (*ApproveTransactionRes, int, error) {
 	endpoint := "/approve/transaction"
 	if tokenAddress == "" {
 		return nil, 0, errors.New("required parameter is missing")
@@ -34,7 +34,7 @@ func (c *Client) ApproveTransaction(ctx context.Context, network, tokenAddress s
 }
 
 // ApproveSpender gets the address to which you need to approve before the swap transaction
-func (c *Client) ApproveSpender(ctx context.Context, network string) (*ApproveSpenderRes, int, error) {
+func (c *Client) ApproveSpender(ctx context.Context, network Network) (*ApproveSpenderRes, int, error) {
 	endpoint := "/approve/spender"
 	var dataRes ApproveSpenderRes
 	statusCode, err := c.doRequest(ctx, network, endpoint, "GET", &dataRes, nil, nil)
@@ -45,7 +45,7 @@ func (c *Client) ApproveSpender(ctx context.Context, network string) (*ApproveSp
 }
 
 // ApproveAllowance gets the number of tokens that the 1inch router is allowed to spend
-func (c *Client) ApproveAllowance(ctx context.Context, network, tokenAddress, walletAddress string) (*ApproveAllowanceRes, int, error) {
+func (c *Client) ApproveAllowance(ctx context.Context, network Network, tokenAddress, walletAddress string) (*ApproveAllowanceRes, int, error) {
 	endpoint := "/approve/allowance"
 	if tokenAddress == "" || walletAddress == "" {
 		return nil, 0, errors.New("required parameter is missing")

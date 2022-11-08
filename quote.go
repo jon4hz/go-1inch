@@ -6,7 +6,7 @@ import (
 )
 
 // Quote gets quote for an aggregated swap which can be used with a web3 provider to send the transaction
-func (c *Client) Quote(ctx context.Context, network, fromTokenAddress, toTokenAddress, amount string, opts *QuoteOpts) (*QuoteRes, int, error) {
+func (c *Client) Quote(ctx context.Context, network Network, fromTokenAddress, toTokenAddress, amount string, opts *QuoteOpts) (*QuoteRes, int, error) {
 	endpoint := "/quote"
 
 	if fromTokenAddress == "" || toTokenAddress == "" || amount == "" {

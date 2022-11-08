@@ -5,7 +5,7 @@ import (
 )
 
 // Healthcheck checks if service is able to handle requests
-func (c *Client) Healthcheck(ctx context.Context, network string) (*HealthcheckRes, int, error) {
+func (c *Client) Healthcheck(ctx context.Context, network Network) (*HealthcheckRes, int, error) {
 	endpoint := "/healthcheck"
 	var dataRes HealthcheckRes
 	statusCode, err := c.doRequest(ctx, network, endpoint, "GET", &dataRes, nil)

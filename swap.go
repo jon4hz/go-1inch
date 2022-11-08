@@ -6,7 +6,7 @@ import (
 )
 
 // Swap gets swap for an aggregated swap which can be used with a web3 provider to send the transaction
-func (c *Client) Swap(ctx context.Context, network, fromTokenAddress, toTokenAddress, amount, fromAddress string, slippage int64, opts *SwapOpts) (*SwapRes, int, error) {
+func (c *Client) Swap(ctx context.Context, network Network, fromTokenAddress, toTokenAddress, amount, fromAddress string, slippage int64, opts *SwapOpts) (*SwapRes, int, error) {
 	endpoint := "/swap"
 
 	if fromTokenAddress == "" || toTokenAddress == "" || amount == "" || fromAddress == "" {
