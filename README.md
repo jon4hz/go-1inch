@@ -4,6 +4,8 @@ A golang API wrapper for the 1inch API
 
 ## Getting started
 
+[![testing](https://github.com/jon4hz/go-1inch/actions/workflows/testing.yml/badge.svg)](https://github.com/jon4hz/go-1inch/actions/workflows/testing.yml)
+
 ```go
 package main
 
