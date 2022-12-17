@@ -33,4 +33,4 @@ func main(){
 ## Ressources
 
 - [Official API Docs](https://docs.1inch.io/docs/aggregation-protocol/api/swagger/)
-- [Go Docs](https://pkg.go.dev/github.com/jon4hz/go-1inch)
+- [Go Docs](https://pkg.go.dev/github.com/matthew188/go-1inch)
